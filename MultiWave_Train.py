@@ -5,7 +5,7 @@ from tensorflow.keras.layers import Input
 from tensorflow.keras.models import Model
 
 # Controlled Training Variables
-EPOCHS = 100
+EPOCHS = 400
 BATCH_SIZE = 32
 SEQUENCE_LENGTHS = [8,  4]
 NUM_SEGMENTS = 5  # Number of segments in x-axis
@@ -45,7 +45,7 @@ def flexible_model_fn():
     inputs = Input(shape=(None, 1))
     x = tf.keras.layers.LSTM(50, return_sequences=True)(inputs)
     x = tf.keras.layers.LSTM(50)(x)
-    x = tf.keras.layers.Dense(100, activation='relu')(x)
+    x = tf.keras.layers.Dense(200, activation='relu')(x)
     classification_output = tf.keras.layers.Dense(len(wave_functions), activation='softmax', name='classification_output')(x)
     regression_output = tf.keras.layers.Dense(1, name='regression_output')(x)
 
